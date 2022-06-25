@@ -6,5 +6,8 @@ handler.help = ['lewd', 'eron', 'solo', 'anal', 'keta', 'tits', 'kuni', 'solog',
 handler.tags = ['nsfw']
 handler.command = /^(lewd|eron|solo|anal|keta|tits|kuni|solog|erok|feetg|lewdk|erofeet|holoero|classic|erokemo|futanari|eroyuri|yaoi)$/i
 //buatan hyzer, jgn hapus nama gw atuh 😊
+handler.limit = 2
+handler.private = false
+
 module.exports = handler
  
