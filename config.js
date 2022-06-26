@@ -1,7 +1,7 @@
 //=============『 Utama 』================== //
 global.owner = ['6281317549796'] 
 global.mods = [] 
-global.prems = [] 
+global.prems = ['6281317549796'] 
 
 //=============『 Info Owner 』============== //
 global.nameowner = 'Rexxin Official'
