@@ -1,12 +1,19 @@
-let handler = async (m, { conn, command }) => {
-let nyenye = `https://hmtai.herokuapp.com/nsfw/${command}`
-    conn.sendButtonImg(m.chat, nyenye, 'Nih', wm2, 'Next', `.${command}`, m) 
+let fetch = require('node-fetch')
+let handler = async (m, { conn, usedPrefix, command }) => {
+     m.reply('tunggu...')
+  let res = await fetch(`https://hmtai.herokuapp.com/nsfw/${command}`)
+  let json = await res.json()
+  if (!json.url) throw json
+  await conn.sendButtonImg(m.chat, json.url, 'sagne sama kartun telanjang?', `random ${command}`, 'Lagi banh', `${usedPrefix + command}`, m, false)
 }
-handler.help = ['ahegao', 'ass', 'bdsm', 'blowjob', 'cum', 'ero', 'femdom', 'foot', 'gangbang', 'glasses', 'hentai', 'jahy', 'maid', 'manga', 'neko', 'orgy', 'panties', 'pussy','sfwneko', 'tentacles', 'thighs', 'yuri']
-handler.tags = ['nsfw']
-handler.command = /^(ahegao|ass|bdsm|blowjob|cum|ero|femdom|foot|gangbang|glasses|hentai|jahy|maid|manga|neko|orgy|panties|pussy|sfwneko|tentacles|thighs|yuri)$/i
-//buatan hyzer, jgn hapus atuh 😊
+handler.help = ['ass', 'bdsm', 'blowjob', 'boobjob', 'cum', 'creampie', 'cuckold', 'ero', 'elves', 'femdom', 'foot', 'gangbang', 'glasses', 'hentai', 'incest', 'masturbation', 'pantsu', 'orgy', 'tentacles', 'thighs', 'uniform', 'vagina', 'yuri' ]
+handler.tags = ['18+']
+handler.command = /^(ass|bdsm|blowjob|boobjob|cum|creampie|cuckold|ero|elves|femdom|foot|gangbang|glasses|hentai|incest|masturbation|pantsu|orgy|tentacles|thighs|uniform|vagina|yuri)$/i
+
+handler.private = true
 handler.limit = 2
-handler.private = false
+handler.register = true
 
 module.exports = handler
+
+//by lui
