@@ -1,17 +1,15 @@
-let fs = require('fs')
-let handler = async (m, { conn, args }) => {
-
-    const json = JSON.parse(fs.readFileSync('./src/moderator.json'))
+let handler = async (m, { conn, text }) => {
     let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : args[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net'
-    else who = args[0] ? args[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
-    if (json.includes(who.split`@`[0])) throw `${await conn.getName(who)} sudah jadi moderator!`
-    json.push(`${who.split`@`[0]}`)
-    fs.writeFileSync('./src/moderator.json', JSON.stringify(json))
-    m.reply(`${await conn.getName(who)} sekarang jadi moderator!`)
-
-    delete require.cache[require.resolve('../config')]
-    require('../config')
+    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
+    else who = m.chat
+    if (!who) throw `tag orangnya!`
+    if (global.mods.includes(who.split`@`[0])) throw 'dia udah menjadi moderator !'
+    global.mods.push(`${who.split`@`[0]}`)
+    conn.reply(m.chat, `@${who.split`@`[0]} sekarang moderator !`, m, {
+        contextInfo: {
+            mentionedJid: [who]
+        }
+    })
 
 }
 handler.help = ['addmods [@user]']
