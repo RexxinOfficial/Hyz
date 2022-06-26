@@ -13,7 +13,7 @@ handler.tags = ['owner']
 handler.command = /^(cheat)$/i
 handler.owner = false
 handler.mods = true
-handler.premium = false
+handler.premium = true
 handler.group = false
 handler.private = false
 
